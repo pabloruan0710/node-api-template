@@ -5,7 +5,7 @@ Este repositório é uma base para o desenvolvimento de projetos de backend em N
 Integrações já adicionadas:
 - Banco de dados SQL (Postregres)
 - Banco de dados NoSql (Rethinkdb)
-- Permite conexão com Socket.io
+- Permite conexão com Socket.io (mesma porta do server express definido no .env)
 - Cache com Redis
 
 ## Instalação
@@ -30,16 +30,16 @@ Integrações já adicionadas:
 
 É possível criar um novo módulo a partir de um comando, eliminando necessidade de criar todos os arquivos (services, controller, respositories, rotues) na mão, basta executar o seguinte comando
 
-1. Clone o repositório:
+1. Criando módulo:
 
    ```bash
    npm run generate <NomeDoModulo> <VersaoServico> <NoSQL>
    # Exemplo: npm run generate User v1 false
    ```
 
-   - NomeDoModulo: Nome do seu novo módulo, ex: User
-   - VersaoServico: Versão do serviço, ex: v1, v2, v3 (usado para versionamento e deve compor o endpoint)
-   - NoSql: por padrão o serviço é criado com o Repository SQL (postrgres), caso queira usar o RethinkDB, use true para esse parametro
+   - **NomeDoModulo**: Nome do seu novo módulo, ex: User
+   - **VersaoServico**: Versão do serviço, ex: v1, v2, v3 (usado para versionamento e **deve compor o endpoint**)
+   - **NoSql**: por padrão o serviço é criado com o Repository SQL (postrgres), caso queira usar o RethinkDB, use true para esse parametro
 
 ## Funcionalidades
 
@@ -281,17 +281,18 @@ User Response
 
 ## Bibliotecas
 
-- (pg[https://www.npmjs.com/package/pg])
-- (jsonwebtoken[https://www.npmjs.com/package/jsonwebtoken])
-- (bcrypt[https://www.npmjs.com/package/bcrypt])
-- (express > 4.16.0[https://www.npmjs.com/package/express])
-- (socket.io[https://www.npmjs.com/package/socket.io])
-- (rethinkdb [https://www.npmjs.com/package/rethinkdb])
-- (winston[https://www.npmjs.com/package/winston])
-- (morgan[https://www.npmjs.com/package/morgan])
-- (nodemon (opcional)[https://www.npmjs.com/package/nodemon])
-- (dotenv[https://www.npmjs.com/package/dotenv])
-- (redis[https://www.npmjs.com/package/redis])
+- ([pg](https://www.npmjs.com/package/pg))
+- ([jsonwebtoken](https://www.npmjs.com/package/jsonwebtoken))
+- ([bcrypt](https://www.npmjs.com/package/bcrypt))
+- ([express] > 4.16.0(https://www.npmjs.com/package/express))
+- ([socket].io(https://www.npmjs.com/package/socket.io))
+- ([rethinkdb] (https://www.npmjs.com/package/rethinkdb))
+- ([winston](https://www.npmjs.com/package/winston))
+- ([morgan](https://www.npmjs.com/package/morgan))
+- ([nodemon] (opcional)(https://www.npmjs.com/package/nodemon))
+- ([dotenv](https://www.npmjs.com/package/dotenv))
+- ([redis](https://www.npmjs.com/package/redis))
+- ([lodash](https://www.npmjs.com/package/lodash))
 
 ## Contribuição
 
