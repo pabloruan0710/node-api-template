@@ -15,8 +15,10 @@ Necessário `Node >= v16.10.0`
 1. Clone o repositório:
 
    ```bash
-   git clone https://github.com/pabloruan0710/nodejs-backend-base.git
-   cd nodejs-backend-base
+   git clone https://github.com/pabloruan0710/node-api-template.git
+   
+   # Acessar pasta do projeto
+   cd node-api-template
    
    # Instale as dependências
    npm install
@@ -32,6 +34,14 @@ Necessário `Node >= v16.10.0`
 
    # Testando o serviço, abra o browser e digite
    http://localhost:4000/api/v1/example/test
+
+   #### Opcional: Caso queira republicar em outro repositório do git.
+   # 1.	Vá para o GitHub e crie um novo repositório.
+   # 2.	Não inicialize o novo repositório com um README, .gitignore ou qualquer outra configuração, pois você estará enviando o conteúdo do repositório clonado.
+   # 3.	Copie a URL do novo repositório (algo como https://github.com/seu-usuario/novo-repositorio.git).
+   git remote remove origin
+   git remote add origin https://github.com/seu-usuario/novo-repositorio.git
+   git push -u origin main
 
    ```
 
