@@ -1,12 +1,83 @@
-# Projeto base para backend Node.js
+# Node.js API Template
 
+Este repositório é uma base para o desenvolvimento de projetos de backend em Node.js, criado por **Pablo Ruan** ([@pabloruan0710](https://github.com/pabloruan0710)). O projeto oferece uma estrutura modular e escalável, com integração opcional para PostgreSQL, Socket.io, RethinkDB e Redis, além de funcionalidades de autenticação com JWT e cache automático utilizando middleware com Redis.
+
+Integrações já adicionadas:
 - Banco de dados SQL (Postregres)
 - Banco de dados NoSql (Rethinkdb)
 - Permite conexão com Socket.io
 - Cache com Redis
 
+## Instalação
 
-#### Estrutura de pastas
+1. Clone o repositório:
+
+   ```bash
+   git clone https://github.com/pabloruan0710/nodejs-backend-base.git
+   cd nodejs-backend-base
+   
+   # Instale as dependências
+   npm install
+
+   # Configure o arquivo .env conforme necessário
+   cp .env.example .env
+
+   # Inicie o servidor
+   npm run dev
+   ```
+
+## Criação de módulo
+
+É possível criar um novo módulo a partir de um comando, eliminando necessidade de criar todos os arquivos (services, controller, respositories, rotues) na mão, basta executar o seguinte comando
+
+1. Clone o repositório:
+
+   ```bash
+   npm run generate <NomeDoModulo> <VersaoServico> <NoSQL>
+   # Exemplo: npm run generate User v1 false
+   ```
+
+   - NomeDoModulo: Nome do seu novo módulo, ex: User
+   - VersaoServico: Versão do serviço, ex: v1, v2, v3 (usado para versionamento e deve compor o endpoint)
+   - NoSql: por padrão o serviço é criado com o Repository SQL (postrgres), caso queira usar o RethinkDB, use true para esse parametro
+
+## Funcionalidades
+
+- Estrutura organizada em múltiplas pastas (routes, controllers, services, repositories, etc.).
+- Suporte para banco de dados **PostgreSQL** e **RethinkDB** (opcionais).
+- Integração com **Socket.io** para comunicação em tempo real (opcional).
+- Cache automático usando **Redis** como middleware.
+- Autenticação segura utilizando **JSON Web Tokens (JWT)**.
+- Hashing de senhas com **bcrypt**.
+- Logging avançado com **Winston** e **Morgan**.
+- Variáveis de ambiente gerenciadas com **dotenv**.
+- Suporte opcional para reinicialização automática com **nodemon** durante o desenvolvimento.
+
+## Tecnologias Utilizadas
+
+- **Node.js**: Plataforma de execução de código JavaScript no servidor.
+- **Express**: Framework web para Node.js que facilita o desenvolvimento de APIs REST.
+- **PostgreSQL**: Banco de dados relacional (opcional).
+- **RethinkDB**: Banco de dados NoSQL orientado a documentos e voltado para aplicativos em tempo real (opcional).
+- **Redis**: Armazenamento de dados em memória usado para cache e gerenciamento de sessões.
+- **Socket.io**: Biblioteca para comunicação em tempo real (opcional).
+- **JWT (jsonwebtoken)**: Padrão aberto para autenticação e troca segura de informações.
+- **bcrypt**: Biblioteca para hashing de senhas.
+- **Winston** e **Morgan**: Bibliotecas para registro de logs.
+- **dotenv**: Carrega variáveis de ambiente de um arquivo `.env`.
+
+## Estrutura de Pastas
+
+A arquitetura do projeto é dividida nas seguintes pastas principais:
+
+- **/controllers**: Lida com a lógica de requisição e resposta.
+- **/services**: Contém a lógica de negócios.
+- **/repositories**: Comunica diretamente com os repositórios (SQL ou NOSQL).
+- **/routes**: Define as rotas da API e mapeia para os controladores apropriados.
+- **/middlewares**: Middlewares personalizados, incluindo o middleware de cache com Redis.
+- **/config**: Configurações e variáveis de ambiente.
+- **/models**: Modelos para interação com bancos de dados.
+
 ```
 /project-root
 │
@@ -55,7 +126,7 @@
 
 ```
 
-#### Explicação de pastas
+## Explicação de pastas
 
 <details>
 <summary>/config</summary>
@@ -134,14 +205,14 @@ Documentação detalhada do projeto, incluindo especificações de API, configur
 </blockquote>
 </details>
 
-#### Considerações para Escalabilidade
+## Considerações para Escalabilidade
 - <b>Modularidade</b>: A estrutura modular facilita a adição de novos recursos sem impactar a base de código existente. Por exemplo, se você adicionar uma nova funcionalidade no WebSocket, ela pode ser isolada dentro da pasta /src/sockets.
 
 - <b>Microserviços</b> (Opcional): Se o projeto crescer significativamente, você pode considerar dividir a aplicação em microserviços, onde cada serviço tem seu próprio repositório e estrutura semelhante à descrita acima.
 
 - <b>Autenticação e Segurança</b>: Garanta que há uma abordagem centralizada para autenticação e autorização, possivelmente implementada nos middlewares.
 
-#### Versionamento de Serviços
+## Versionamento de Serviços
 
 ```
 /project-root
@@ -165,7 +236,7 @@ Documentação detalhada do projeto, incluindo especificações de API, configur
 └── package.json
 ```
 
-#### Fluxo de Requests
+## Fluxo de Requests
 
 ```
 User Request
@@ -201,24 +272,31 @@ User Response
 10.	User Response: A resposta é enviada ao usuário.
 
 
-
-#### Design Patterns
+## Design Patterns
 - Repository Pattern
 - Service Layer Pattern
 - Factory Pattern
 - Middleware Pattern
 - Observer Pattern
 
-#### Bibliotecas
-- pg
-- jsonwebtoken
-- bcrypt
-- events
-- express > 4.16.0
-- ws
-- rethinkdb ![](https://www.npmjs.com/package/rethinkdb)
-- winston
-- morgan
-- nodemon (opcional)
-- dotenv
-- redis
+## Bibliotecas
+
+- (pg[https://www.npmjs.com/package/pg])
+- (jsonwebtoken[https://www.npmjs.com/package/jsonwebtoken])
+- (bcrypt[https://www.npmjs.com/package/bcrypt])
+- (express > 4.16.0[https://www.npmjs.com/package/express])
+- (socket.io[https://www.npmjs.com/package/socket.io])
+- (rethinkdb [https://www.npmjs.com/package/rethinkdb])
+- (winston[https://www.npmjs.com/package/winston])
+- (morgan[https://www.npmjs.com/package/morgan])
+- (nodemon (opcional)[https://www.npmjs.com/package/nodemon])
+- (dotenv[https://www.npmjs.com/package/dotenv])
+- (redis[https://www.npmjs.com/package/redis])
+
+## Contribuição
+
+Contribuições são bem-vindas! Se você deseja contribuir, por favor, abra um Pull Request ou uma Issue com sugestões.
+
+## Licença
+
+Este projeto está licenciado sob a Licença MIT. Veja o arquivo LICENSE para mais detalhes.
