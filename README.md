@@ -10,6 +10,8 @@ Integrações já adicionadas:
 
 ## Instalação
 
+Necessário `Node >= v16.10.0`
+
 1. Clone o repositório:
 
    ```bash
