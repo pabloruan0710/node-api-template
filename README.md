@@ -24,8 +24,15 @@ Necessário `Node >= v16.10.0`
    # Configure o arquivo .env conforme necessário
    cp .env.example .env
 
+   # Defina a porta do servidor no .env, ex: PORT=4000
+   PORT=
+
    # Inicie o servidor
    npm run dev
+
+   # Testando o serviço, abra o browser e digite
+   http://localhost:4000/api/v1/example/test
+
    ```
 
 ## Criação de módulo
@@ -286,12 +293,12 @@ User Response
 - ([pg](https://www.npmjs.com/package/pg))
 - ([jsonwebtoken](https://www.npmjs.com/package/jsonwebtoken))
 - ([bcrypt](https://www.npmjs.com/package/bcrypt))
-- ([express] > 4.16.0(https://www.npmjs.com/package/express))
-- ([socket].io(https://www.npmjs.com/package/socket.io))
-- ([rethinkdb] (https://www.npmjs.com/package/rethinkdb))
+- ([express > 4.16.0](https://www.npmjs.com/package/express))
+- ([socket.io](https://www.npmjs.com/package/socket.io))
+- ([rethinkdb](https://www.npmjs.com/package/rethinkdb))
 - ([winston](https://www.npmjs.com/package/winston))
 - ([morgan](https://www.npmjs.com/package/morgan))
-- ([nodemon] (opcional)(https://www.npmjs.com/package/nodemon))
+- ([nodemon](https://www.npmjs.com/package/nodemon))
 - ([dotenv](https://www.npmjs.com/package/dotenv))
 - ([redis](https://www.npmjs.com/package/redis))
 - ([lodash](https://www.npmjs.com/package/lodash))

@@ -28,6 +28,15 @@ class ExampleController {
             ResponseFormatter.responseError(res, error)
         }
     }
+
+    async example(req, res) {
+        try {
+            const example = await UserService.example(req.params.id)
+            res.status(200).json(ResponseFormatter.success(example))
+        } catch (error) {
+            ResponseFormatter.responseError(res, error)
+        }
+    }
 }
 
 module.exports = new ExampleController()

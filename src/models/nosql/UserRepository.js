@@ -19,6 +19,9 @@ class UserRepository {
             throw new Error(`Não foi possível encontrar o usuario pelo id informado: ${error.message}`, error)
         }
     }
+    async example(id) {
+        return {id: id, example: "Resposta de exmplo"}
+    }
 }
 
 module.exports = new UserRepository();

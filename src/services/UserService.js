@@ -31,6 +31,10 @@ class UserService {
         }
         return user;
     }
+
+    async example(id) {
+        return await UserRepository.example(id)
+    }
 }
 
 module.exports = new UserService();

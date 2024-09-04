@@ -2,6 +2,9 @@ const DatabaseFactory = require("../../../config/db")
 const logger = require('../../utils/logger')
 
 class UserRepository {
+    async example(id) {
+        return {id: id, example: "Resposta de exmplo"}
+    }
     async createUser(user) {
         const result = await db.sql(
             `INSERT INTO user (name, email) VALUES($1, $2) RETURNING *`,
