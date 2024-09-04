@@ -52,7 +52,7 @@ function generateBoilerplate(moduleName, version, noSQL = false) {
       routeIndexTemplate(moduleName)
     );
 
-  console.log(`Boilerplate para o módulo ${moduleName} criado com sucesso!`);
+  console.log(`✅ Novo módulo ${moduleName} criado com sucesso!`);
   console.log(`🚨 Adicione as seguintes linhas no arquivo 'src/routes.js'`);
   console.log(
     `→ "const ${moduleName}${version.toUpperCase()}Routes = require('./api/${version}')"`
@@ -70,80 +70,79 @@ function createFile(filePath, content) {
 // Templates de código boilerplate
 function serviceTemplate(moduleName) {
   return `
-        const ${moduleName}Repository = require('../models/sql/${moduleName}Repository')
+const ${moduleName}Repository = require('../models/sql/${moduleName}Repository')
 
-        class ${moduleName}Service {
-            constructor() {
-                // Inicialização do serviço
-            }
+class ${moduleName}Service {
+    constructor() {
+        // Inicialização do serviço
+    }
 
-            async example(exampleId) {
-                const example = await ${moduleName}Repository.findExampleById(exampleId);
-                if (!user) {
-                    throw new Error('Example not found')
-                }
-                return example;
-            }
+    async example(exampleId) {
+        const example = await ${moduleName}Repository.findExampleById(exampleId);
+        if (!user) {
+            throw new Error('Example not found')
         }
-        module.exports = new ${moduleName}Service();
-    `;
+        return example;
+    }
+}
+module.exports = new ${moduleName}Service();`;
 }
 
 function repositoryTemplate(moduleName) {
   return `
-        const DatabaseFactory = require("../../../config/db")
-        const logger = require('../../utils/logger')
+const DatabaseFactory = require("../../../config/db")
+const logger = require('../../utils/logger')
 
-        class ${moduleName}Repository {
+class ${moduleName}Repository {
 
-            // Método de Exemplo
-            async findExampleById(id) {
-                try {
-                    const result = await DatabaseFactory.sql.query('SELECT * FROM pg_catalog.pg_statistic where stakind1 = $1', [id])
-                    return result.rows[0]
-                } catch (error) {
-                    
-                    logger.error(\`[${this.constructor.name}][]: ${error.stack}\`)
-                    throw new Error(\`Não foi possível encontrar o exmplo pelo id informado: ${error.message}\`, error)
-                }
-            }
-
+    // Método de Exemplo
+    async findExampleById(id) {
+        try {
+            const result = await DatabaseFactory.sql.query('SELECT * FROM pg_catalog.pg_statistic where stakind1 = $1', [id])
+            return result.rows[0]
+        } catch (error) {
+            
+            //logger.error("["+this.constructor.name+"][]:", error.stack)
+            throw new Error(\`Não foi possível encontrar o exmplo pelo id informado:\`, error.message)
         }
-        module.exports = new ${moduleName}Repository();
-    `;
+    }
+
+}
+module.exports = new ${moduleName}Repository();
+`;
 }
 
 function controllerTemplate(moduleName) {
   return `
-    const ${moduleName}Service = require('../../../services/${moduleName}Service');
-    const ResponseFormatter = require('../../../utils/ResponseFormatter');
+const ${moduleName}Service = require('../../../services/${moduleName}Service');
+const ResponseFormatter = require('../../../utils/ResponseFormatter');
 
-    class ${moduleName}Controller {
-        async example(req, res) {
-             try {
-                const example = await ${moduleName}Service.example(req.params.id)
-                res.status(200).json(ResponseFormatter.success(example))
-            } catch (error) {
-                ResponseFormatter.responseError(res, error)
-            }
+class ${moduleName}Controller {
+    async example(req, res) {
+            try {
+            const example = await ${moduleName}Service.example(req.params.id)
+            res.status(200).json(ResponseFormatter.success(example))
+        } catch (error) {
+            ResponseFormatter.responseError(res, error)
         }
     }
-    module.exports = new ${moduleName}Controller();
-    `;
+}
+module.exports = new ${moduleName}Controller();
+`;
 }
 
 function routesTemplate(moduleName) {
   return `const express = require('express');
-    const router = express.Router();
-    const ExampleController = require('../controllers/${moduleName}Controller')
-    const AuthMiddleware = require('../../../middlewares/authMiddleware')
-    const CacheMiddleware = require('../../../middlewares/cacheMiddleware')
+const router = express.Router();
+const ${moduleName}Controller = require('../controllers/${moduleName}Controller')
+const AuthMiddleware = require('../../../middlewares/authMiddleware')
+const CacheMiddleware = require('../../../middlewares/cacheMiddleware')
 
-    router.post('/test', ${moduleName}Controller.register)
-    router.get('/test/:id', CacheMiddleware.cached(60), ${moduleName}Controller.example) // Cache com 60 segundos
-    //router.post('/test/login', AuthMiddleware.auth, ${moduleName}Controller.login)
+router.post('/test', ${moduleName}Controller.example)
+router.get('/test/:id', CacheMiddleware.cached(60), ${moduleName}Controller.example) // Cache com 60 segundos
+//router.post('/test/login', AuthMiddleware.auth, ${moduleName}Controller.login)
 
-    module.exports = router;`;
+module.exports = router;`;
 }
 
 function routeIndexTemplate(moduleName) {
